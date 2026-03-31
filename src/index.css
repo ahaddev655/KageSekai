@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+    --font-poppins: "Poppins", sans-serif;
+    --font-montserrat: "Montserrat", sans-serif;
+    --font-lato: "Lato", sans-serif;
+}
+
+.section {
+    @apply container mx-auto pb-12 xl:px-24 lg:px-12 md:px-6 px-3;
+}
+
+.container-class {
+    @apply container xl:px-24 lg:px-12 md:px-6 px-3
+}
