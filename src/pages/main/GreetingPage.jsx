@@ -15,7 +15,7 @@ function GreetingPage() {
         <div
           className="absolute inset-0 rounded-4xl bg-cover bg-no-repeat bg-center w-full h-[83vh] -z-10 blur-xs"
           style={{
-            backgroundImage: `linear-gradient(to top right, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/assets/download.png')`,
+            backgroundImage: `linear-gradient(to top right, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/assets/greetings-page-image.jpg')`,
           }}
         />
         {/* ==================== HEADING ==================== */}
@@ -46,6 +46,33 @@ function GreetingPage() {
             <Funnel size={18} />
             <span className="text-xs font-medium">FILTER</span>
           </div>
+        </div>
+        <div className="w-87.5 text-center space-x-1 mt-4 font-light">
+          <span>
+            <Link className="text-white hover:text-gray-400 transition-colors duration-300 text-[16px]">
+              One Piece,
+            </Link>
+          </span>
+          <span>
+            <Link className="text-white hover:text-gray-400 transition-colors duration-300 text-[16px]">
+              Jujutsu Kaisen The Culling,
+            </Link>
+          </span>
+          <span>
+            <Link className="text-white hover:text-gray-400 transition-colors duration-300 text-[16px]">
+              The Strongest Job Is,
+            </Link>
+          </span>
+          <span>
+            <Link className="text-white hover:text-gray-400 transition-colors duration-300 text-[16px]">
+              Hells Paradise,
+            </Link>
+          </span>
+          <span>
+            <Link className="text-white hover:text-gray-400 transition-colors duration-300 text-[16px]">
+              There Was A Cute
+            </Link>
+          </span>
         </div>
         {/* ==================== WATCH BUTTON ==================== */}
         <div>

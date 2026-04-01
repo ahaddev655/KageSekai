@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Captions, Play } from "lucide-react";
+import { Captions, EllipsisVertical, Play } from "lucide-react";
 
 function NewRelease() {
+  const [isDropdownToggle, setisDropdownToggle] = useState(false);
   const mockAnimes = [
     {
       id: 1,
@@ -89,10 +90,12 @@ function NewRelease() {
       image: "/assets/mock-image.jpg",
     },
   ];
+  const storeData = (key, id) => {
+    localStorage.setItem(key, id);
+  };
+
   return (
-    <div
-      className="py-12"
-    >
+    <div className="py-12">
       <div>
         <h1 className="text-3xl text-white font-bold font-montserrat">
           Recent Releases
@@ -105,9 +108,9 @@ function NewRelease() {
             whileInView={{ y: 0, opacity: 1, display: "block" }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{
-              delay: 0.3 * anime.id,
-              duration: 0.8,
-              ease: "easeOut",
+              delay: 0.2 * anime.id,
+              duration: 0.5,
+              ease: "easeInOut",
             }}
             className="relative overflow-hidden cursor-pointer rounded-lg group"
           >
@@ -135,6 +138,41 @@ function NewRelease() {
               </div>
             </div>
 
+            {/* -------------------- PLAY -------------------- */}
+            <div className="absolute inset-0 top-0 left-0 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <button
+                className="grid place-items-center w-7 ml-auto mr-2 mt-2 relative z-20 h-7 bg-orange-400 hover:bg-orange-500 rounded-full scale-75 group-hover:scale-100 transition-all duration-300 shadow-xl"
+                onClick={() => setisDropdownToggle(!isDropdownToggle)}
+              >
+                <EllipsisVertical
+                  fill="white"
+                  color="white"
+                  size={20}
+                  strokeWidth={3}
+                />
+              </button>
+              {isDropdownToggle && (
+                <div className="absolute top-10 right-2 z-50 w-40 overflow-hidden rounded-lg border border-white/10 bg-gray-800/95 shadow-xl backdrop-blur-md">
+                  <div className="flex flex-col py-1">
+                    {["Watching", "On-Hold", "Planning", "Completed"].map(
+                      (btn, i) => (
+                        <button
+                          key={i}
+                          className="px-4 py-2 text-left text-sm font-medium text-gray-200 transition-colors hover:bg-orange-500 hover:text-white"
+                          onClick={() => {
+                            setisDropdownToggle(false);
+                            storeData(btn, anime.id);
+                          }}
+                        >
+                          {btn}
+                        </button>
+                      ),
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+
             {/* -------------------- CONTENT -------------------- */}
             <div className="absolute z-20 bottom-2 left-4.5 group-hover:opacity-0 opacity-100 transition-opacity duration-300 ease-in-out">
               <h1 className="text-white text-[15px] font-medium">
@@ -147,7 +185,9 @@ function NewRelease() {
                   <Captions size={20} />
                   {anime.episodes}
                 </div>
-                <span className="text-sm text-gray-400 font-medium">{anime.type}</span>
+                <span className="text-sm text-gray-400 font-medium">
+                  {anime.type}
+                </span>
               </div>
             </div>
           </motion.div>

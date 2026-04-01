@@ -46,7 +46,10 @@ function HomeHeader() {
     <header className="fixed z-50 top-5 left-0 right-0 mx-auto w-[90%] md:w-[85%] lg:w-[90%] xl:w-300">
       <div className="flex items-center justify-between w-full bg-[#0d1217] py-2 px-4 rounded-2xl relative">
         {/* ==================== HEADING ==================== */}
-        <Link to={'/home'} className="text-green-500 md:text-xl font-bold whitespace-nowrap mr-4">
+        <Link
+          to={"/home"}
+          className="text-green-500 md:text-xl font-bold whitespace-nowrap mr-4"
+        >
           <span className="text-orange-500">Kage</span> Sekai
         </Link>
 
@@ -175,34 +178,42 @@ function HomeHeader() {
             </Link>
             {/* -------------------- PROFILE -------------------- */}
             {userExists ? (
-              <button className="shrink-0 grid place-items-center w-8 h-8 rounded-full bg-[#1c2228] group ml-4">
-                <UserRound
-                  size={17}
-                  strokeWidth={2.5}
-                  className="text-white group-hover:text-gray-300 transition-colors"
-                />
-              </button>
+              <Link to={"/profile"}>
+                <button className="shrink-0 grid place-items-center w-8 h-8 rounded-full bg-[#1c2228] group ml-4">
+                  <UserRound
+                    size={17}
+                    strokeWidth={2.5}
+                    className="text-white group-hover:text-gray-300 transition-colors"
+                  />
+                </button>
+              </Link>
             ) : (
-              <button className="border border-white/20 hover:bg-white/10 text-white rounded-md px-5 py-2 text-sm font-medium transition-all duration-300">
-                Login
-              </button>
+              <Link to={"/auth"}>
+                <button className="border border-white/20 hover:bg-white/10 text-white rounded-md px-5 py-2 text-sm font-medium transition-all duration-300">
+                  Login
+                </button>
+              </Link>
             )}
           </div>
         </div>
 
         {/* -------------------- PROFILE -------------------- */}
         {userExists ? (
-          <button className="shrink-0 lg:hidden grid place-items-center w-8 h-8 rounded-full bg-[#1c2228] group ml-4">
-            <UserRound
-              size={17}
-              strokeWidth={2.5}
-              className="text-white group-hover:text-gray-300 transition-colors"
-            />
-          </button>
+          <Link to={"/profile"} className="lg:hidden block">
+            <button className="shrink-0 grid place-items-center w-8 h-8 rounded-full bg-[#1c2228] group ml-4">
+              <UserRound
+                size={17}
+                strokeWidth={2.5}
+                className="text-white group-hover:text-gray-300 transition-colors"
+              />
+            </button>
+          </Link>
         ) : (
-          <button className="border border-white/20 lg:hidden block hover:bg-white/10 text-white rounded-md px-5 py-2 text-sm font-medium transition-all duration-300">
-            Login
-          </button>
+          <Link to={"/auth"} className="lg:hidden block">
+            <button className="border border-white/20 block hover:bg-white/10 text-white rounded-md px-5 py-2 text-sm font-medium transition-all duration-300">
+              Login
+            </button>
+          </Link>
         )}
 
         {/* ==================== MOBILE CANVAS ==================== */}

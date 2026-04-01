@@ -31,7 +31,7 @@ const ANIME_DATA = [
 
 const AnimeSwiper = () => {
   return (
-    <div className="w-full h-125 md:h-150 lg:h-175 relative overflow-hidden bg-black">
+    <div className="w-full h-125 md:h-150 lg:h-175 relative overflow-hidden bg-black container mx-auto">
       <Swiper
         modules={[Autoplay]}
         effect="fade"
@@ -55,14 +55,14 @@ const AnimeSwiper = () => {
             <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent" />
 
             {/* Content Container */}
-            <div className="relative z-10 h-full flex flex-col justify-center container-class space-y-4 md:space-y-6">
+            <div className="relative z-10 h-full flex flex-col justify-center sm:items-start items-center container-class space-y-4 md:space-y-6">
               {/* Title */}
-              <h1 className="text-3xl font-semibold text-white tracking-tight">
+              <h1 className="md:text-3xl text-xl font-semibold text-white tracking-tight">
                 {anime.title}
               </h1>
 
               {/* Metadata Tags */}
-              <div className="flex items-center gap-3 text-xs md:text-sm text-gray-300">
+              <div className="flex items-center gap-3 text-xs sm:text-sm text-gray-300">
                 <span className="flex items-center gap-1">{anime.tags[0]}</span>
                 {anime.tags.slice(1).map((tag) => (
                   <span key={tag} className="before:content-['•'] before:mr-2">
@@ -72,12 +72,12 @@ const AnimeSwiper = () => {
               </div>
 
               {/* Description */}
-              <p className="text-gray-300 text-sm leading-relaxed max-w-2xl line-clamp-2">
+              <p className="text-gray-300 sm:text-sm text-xs leading-relaxed max-w-2xl line-clamp-2 sm:text-start text-center">
                 {anime.description}
               </p>
 
               {/* Stats Box */}
-              <div className="flex bg-black/40 backdrop-blur-md border border-white/10 p-4 rounded-lg self-start gap-8">
+              <div className="flex bg-black/40 backdrop-blur-md border border-white/10 p-4 rounded-lg sm:self-start text-center gap-8">
                 <div>
                   <p className="text-[10px] uppercase text-gray-400">Rating</p>
                   <p className="text-sm font-semibold text-white">
