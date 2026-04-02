@@ -95,6 +95,7 @@ function UpComing() {
               duration: 0.5,
               ease: "easeInOut",
             }}
+            key={i}
             className="relative overflow-hidden rounded-lg group"
           >
             {/* -------------------- IMAGE -------------------- */}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Captions, EllipsisVertical, Play } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function NewRelease() {
   const [isDropdownToggle, setisDropdownToggle] = useState(false);
@@ -90,8 +91,22 @@ function NewRelease() {
       image: "/assets/mock-image.jpg",
     },
   ];
+
   const storeData = (key, id) => {
-    localStorage.setItem(key, id);
+    const existingData = JSON.parse(localStorage.getItem(key)) || [];
+
+    let newData;
+    if (existingData.includes(id)) {
+      newData = existingData.filter((item) => item !== id);
+    } else {
+      newData = [...existingData, id];
+    }
+
+    localStorage.setItem(key, JSON.stringify(newData));
+  };
+
+  const formattedAnime = (anime) => {
+    return anime.toLowerCase().replaceAll(" ", "-");
   };
 
   return (
@@ -112,6 +127,7 @@ function NewRelease() {
               duration: 0.5,
               ease: "easeInOut",
             }}
+            key={i}
             className="relative overflow-hidden cursor-pointer rounded-lg group"
           >
             {/* -------------------- IMAGE -------------------- */}
@@ -126,20 +142,22 @@ function NewRelease() {
             <div className="absolute inset-0 bg-black/20 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
 
             {/* -------------------- PLAY -------------------- */}
-            <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <div className="grid place-items-center w-14 h-14 bg-white/20 border border-white/30 rounded-full scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
-                <Play
-                  fill="white"
-                  color="white"
-                  size={28}
-                  strokeWidth={2}
-                  className="ml-1"
-                />
-              </div>
+            <div className="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <Link to={`/anime/${formattedAnime(anime.title)}`}>
+                <div className="grid place-items-center w-14 h-14 bg-white/20 border border-white/30 rounded-full scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                  <Play
+                    fill="white"
+                    color="white"
+                    size={28}
+                    strokeWidth={2}
+                    className="ml-1"
+                  />
+                </div>
+              </Link>
             </div>
 
-            {/* -------------------- PLAY -------------------- */}
-            <div className="absolute inset-0 top-0 left-0 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            {/* -------------------- DROPDOWN -------------------- */}
+            <div className="absolute inset-0 top-0 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <button
                 className="grid place-items-center w-7 ml-auto mr-2 mt-2 relative z-20 h-7 bg-orange-400 hover:bg-orange-500 rounded-full scale-75 group-hover:scale-100 transition-all duration-300 shadow-xl"
                 onClick={() => setisDropdownToggle(!isDropdownToggle)}
